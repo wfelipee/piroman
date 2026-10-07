@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Piroman Steak House – Sopot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #3a0f12;
+      --bg2: #2c0a0d;
+      --text: #f2e8dc;
+      --muted: #c9b4a3;
+      --flame: #f0a43a;
+      --line: rgba(242, 232, 220, .22);
+      --display: 'Alfa Slab One', Georgia, serif;
+      --body: 'Work Sans', system-ui, sans-serif;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *, *::before, *::after { box-sizing: inherit; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 400 1.0625rem/1.65 var(--body);
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--flame);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      max-width: 62rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Nagłówek */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+    }
+
+    header .logo {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      text-decoration: none;
+    }
+
+    nav a {
+      margin-left: 1.4rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    nav a:hover { color: var(--flame); }
+
+    /* Hero */
+    .hero {
+      padding: 4.5rem 0 5rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(3.4rem, 13vw, 9rem);
+      line-height: .92;
+      margin: 0 0 1.5rem;
+      letter-spacing: -.01em;
+      color: var(--flame);
+    }
+
+    .hero p {
+      max-width: 34rem;
+      font-size: 1.25rem;
+      margin: 0 0 2rem;
+    }
+
+    /* Przyciski */
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .85rem 1.6rem;
+      border-radius: 2px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid var(--flame);
+    }
+
+    .btn.primary {
+      background: var(--flame);
+      color: var(--bg2);
+    }
+
+    .btn.primary:hover {
+      background: var(--text);
+      border-color: var(--text);
+    }
+
+    .btn.ghost:hover {
+      background: var(--flame);
+      color: var(--bg2);
+    }
+
+    /* Sekcje */
+    section {
+      padding: 4.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 1.5rem;
+      line-height: 1.05;
+    }
+
+    .about { max-width: 38rem; }
+
+    /* Menu */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      gap: 2.5rem;
+    }
+
+    .menu-cat h3 {
+      font-size: 1.2rem;
+      margin: 0 0 1rem;
+      color: var(--flame);
+      font-weight: 600;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .7rem 0;
+      border-bottom: 1px dotted var(--line);
+    }
+
+    .item b { font-weight: 600; }
+
+    .item small {
+      display: block;
+      color: var(--muted);
+    }
+
+    .item .price {
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .placeholder {
+      border: 2px dashed var(--line);
+      padding: 2.5rem 1.5rem;
+      color: var(--muted);
+      max-width: 38rem;
+    }
+
+    .placeholder strong {
+      color: var(--text);
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: .4rem;
+    }
+
+    /* Godziny i kontakt */
+    .visit {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+      gap: 3rem;
+    }
+
+    .visit p { margin: 0 0 1rem; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: .55rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    td:last-child {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    tr.today {
+      color: var(--flame);
+      font-weight: 600;
+    }
+
+    .status {
+      margin: 0 0 1rem;
+      font-weight: 600;
+    }
+
+    .dot {
+      display: inline-block;
+      width: .7rem;
+      height: .7rem;
+      border-radius: 50%;
+      background: var(--muted);
+      margin-right: .5rem;
+    }
+
+    .status.open .dot { background: #7bd88f; }
+    .status.closed .dot { background: #e0685e; }
+
+    .tel {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      text-decoration: none;
+      color: var(--flame);
+    }
+
+    /* Stopka */
+    footer {
+      background: var(--bg2);
+      padding: 2rem 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    @media (max-width: 34rem) {
+      nav a:not(:last-child) { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
+      <a class="logo" href="#">Piroman</a>
+      <nav>
+        <a href="#menu">Menu</a>
+        <a href="#godziny">Godziny</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <h1>Piroman<br>Steak House</h1>
+      <p>Steki z ognia, w Sopocie przy alei Niepodległości. Zadzwoń i zarezerwuj stolik.</p>
+      <div class="btns">
+        <a class="btn primary" href="tel:+48514790268">Zadzwoń: 514 790 268</a>
+        <a class="btn ghost" href="#menu">Zobacz menu</a>
+      </div>
+    </div>
+
+    <section id="o-nas">
+      <h2>Mięso, ogień, sól</h2>
+      <div class="about">
+        <!-- TEKST DO PODMIANY: krótki opis restauracji -->
+        <p>Piroman to steak house w Sopocie. Mięso przygotowujemy na ogniu i podajemy prosto, tak żeby smak mówił sam za siebie.</p>
+      </div>
+    </section>
+
+    <section id="menu">
+      <h2>Menu</h2>
+      <div id="menu-root"></div>
+    </section>
+
+    <section id="godziny">
+      <div class="visit">
+        <div>
+          <h2>Godziny otwarcia</h2>
+          <p class="status" id="status"></p>
+          <table id="hours"></table>
+        </div>
+
+        <div id="kontakt">
+          <h2>Kontakt</h2>
+          <p>Aleja Niepodległości 684<br>81-853 Sopot</p>
+          <p><a class="tel" href="tel:+48514790268">514 790 268</a></p>
+          <div class="btns">
+            <a class="btn primary"
+               href="https://www.google.com/maps/dir/?api=1&destination=Piroman+Steak+House+Aleja+Niepodleg%C5%82o%C5%9Bci+684+Sopot"
+               target="_blank" rel="noopener">Wyznacz trasę</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrap">
+      © <span id="year"></span> Piroman Steak House, aleja Niepodległości 684, 81-853 Sopot
+    </div>
+  </footer>
+
+  <script>
+    /* ===== MENU: tutaj uzupełnisz pozycje =====
+       Każda kategoria:
+       { name: "Steki", items: [ { name: "Ribeye 300 g", desc: "opis (opcjonalnie)", price: "98 zł" } ] }
+       Dopóki tablica jest pusta, na stronie widać informację "Menu wkrótce". */
+    const MENU = [
+      // { name: "Steki", items: [ { name: "", desc: "", price: "" } ] },
+    ];
+
+    const root = document.getElementById('menu-root');
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    if (MENU.length) {
+      root.innerHTML = '<div class="menu-grid">' + MENU.map(c =>
+        '<div class="menu-cat"><h3>' + esc(c.name) + '</h3>' + c.items.map(i =>
+          '<div class="item"><div><b>' + esc(i.name) + '</b>' +
+          (i.desc ? '<small>' + esc(i.desc) + '</small>' : '') +
+          '</div><span class="price">' + esc(i.price) + '</span></div>'
+        ).join('') + '</div>'
+      ).join('') + '</div>';
+    } else {
+      root.innerHTML = '<div class="placeholder"><strong>Menu wkrótce</strong>Aktualne dania i ceny pojawią się tutaj. Zadzwoń pod 514 790 268, żeby dowiedzieć się, co dziś w karcie.</div>';
+    }
+
+    /* Godziny: [dzień tygodnia (0 = niedziela), nazwa, otwarcie, zamknięcie] */
+    const H = [
+      [1, 'Poniedziałek', null, null],
+      [2, 'Wtorek',       null, null],
+      [3, 'Środa',        13, 21],
+      [4, 'Czwartek',     13, 21],
+      [5, 'Piątek',       13, 22],
+      [6, 'Sobota',       12, 22],
+      [0, 'Niedziela',    12, 20]
+    ];
+
+    const now = new Date();
+    const d = now.getDay();
+    const h = now.getHours() + now.getMinutes() / 60;
+
+    document.getElementById('hours').innerHTML = H.map(r =>
+      '<tr' + (r[0] === d ? ' class="today"' : '') + '><td>' + r[1] + '</td><td>' +
+      (r[2] === null ? 'zamknięte' : r[2] + ':00 – ' + r[3] + ':00') + '</td></tr>'
+    ).join('');
+
+    const t = H.find(r => r[0] === d);
+    const st = document.getElementById('status');
+    const isOpen = t[2] !== null && h >= t[2] && h < t[3];
+
+    st.className = 'status ' + (isOpen ? 'open' : 'closed');
+    st.innerHTML = '<span class="dot"></span>' +
+      (isOpen ? 'Teraz otwarte, do ' + t[3] + ':00' : 'Teraz zamknięte');
+
+    document.getElementById('year').textContent = now.getFullYear();
+  </script>
+</body>
+</html>
